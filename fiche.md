@@ -1,4 +1,5 @@
    //Fonction pour ajouter un nouvel hôtel dans la database hotels
+   ````javascript
     $('#ajouter').click(function (event) {
         var val1 = $('#insert-id-h').val();
         var val2 = $('#insert-name-hotel').val();
@@ -19,3 +20,4 @@
             }
         });
     });
+    ````
