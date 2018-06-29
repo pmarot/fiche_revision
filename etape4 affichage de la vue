@@ -1,0 +1,9 @@
+nom du fichier dans la vue views/machine/index.ejs
+
+//debut du code 
+
+<% for (i=0; i< machines.length; i++) { %>
+    <%= machines[i].nom %>
+    <br>
+    <%= machines[i].id %>
+<% } %>
