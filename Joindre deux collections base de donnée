@@ -1,0 +1,84 @@
+// on a une collection droits qui comprend   ({"id_utilisateur": "564543145", "id_machine": "13525435365"}) 
+
+// creer un nouveau Schema // Par exemple models/droit.js
+
+
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+
+var DroitSchema = new mongoose.Schema({
+    id_utilisateur: [{ type:Schema.Types.ObjectId, ref: 'Utilisateur' }],   // on reprend la meme clé que dans la base de donné
+    id_machine: [{ type: Schema.Types.ObjectId, ref: 'Machine' }],          // exemple (id_utilisateur) de la collection droit 
+                                                                            // "utilisateur" est arbitraire on peut mettre au choix
+});
+
+module.exports = mongoose.model("Droit", DroitSchema);
+
+------------------------------------------
+
+
+// aller dans le fichier controller  // Par exemple DroitController.js
+
+var mongoose = require('mongoose');
+
+var Droit = require("../models/Droit");
+
+var droitController = {};
+
+//Liste les droits
+droitController.list = function (req, res) {
+    Droit.find({})
+    .populate("id_utilisateur")                                         // ajouter la method ".populate" avec les meme  clé que
+    .populate("id_machine")                                             // la collection droits
+    .exec(function (err, droits) {
+        if (err) {
+            console.log('Error : ', err);
+        } else {
+            console.log(droits)
+            res.render("../views/droit/index", { droits: droits });
+        }
+    });
+};
+
+
+
+//export du module
+module.exports = droitController;
+
+
+
+------------------------
+creer la route dans le ficheri route
+
+var express = require('express');
+var router = express.Router();
+
+var droit = require("../controllers/DroitController");
+
+//recuperer les droits
+router.get("/", droit.list);
+
+
+//export du module router
+module.exports = router;
+
+
+----------------
+
+// dans la vue --- views/droit/index.ejs  on affiche les elements 
+
+ <body>
+             <% for (i=0; i<droits.length; i++) { %>
+                      <tr>
+                           <td>
+                               <%= droits[i].id_machine.nom %>     // attention a la declaration on se place dans la collection  
+                             </td>                                  // en question
+                             <td>
+                                <%= droits[i].id_utilisateur.nom %>
+                             </td>
+
+   
+                        </tr>
+                <% } %
+</body>
+
