@@ -1,0 +1,38 @@
+// dans la vue en rapport avec la collection par exemple views/machine qui comporte la collection machine 
+
+// on creer un nouveau fichier par exemple getutilisateur 
+
+var utilisateurs = "";                      // on creer une variable vide qui va contenir les informations
+<% for (var i=0; i < utilisateurs.length; i++){ %>            // on boucle dans la collection
+
+    utilisateurs += "<option value='<%= utilisateurs[i]._id%>'><%= utilisateurs[i].nom%></option>";    // on incremente la var 
+<% }                                                                                              // avec les données
+$(function(){
+
+$("#selectutilisateur").html(utilisateurs);                       // on renvoie les donnée dans la page voulu
+ 
+}); 
+
+------------------------
+
+// on creer la route pour pouvoir recuperer et utiliser les informations
+
+//recuperer les utilisateurs pour les integrer dans les droits
+router.get("/getutilisateurs", utilisateur.listgetutilisateurs);
+
+-----------------
+
+// dans la view en question par exemple views/droits/create
+
+   <form action="/droits/save" method="POST">
+
+
+            <select id="selectmachine"></select>                         // la ou on va recuperer les données
+            <select id="selectutilisateur"></select>                      // idem
+            <input type="submit" value="enregistrer" />
+        </form>
+
+
+    </div>
+    <script src="/machines/getmachines"> </script>                      // ajout du lien pour recuperer les données dans la page
+    <script src="/utilisateurs/getutilisateurs"> </script>              // idem
