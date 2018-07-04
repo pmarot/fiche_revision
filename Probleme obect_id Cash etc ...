@@ -1,0 +1,3 @@
+Regarder dans la base de donnée si on il a y pas une erreur 
+regarder quelle object_id pose probleme, exemple( object_id"25453625g32d52")
+le rechercher dans la collection de la base de donnée puis le supprimer avec deleteOne
