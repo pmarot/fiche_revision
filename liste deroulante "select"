@@ -1,0 +1,25 @@
+// on recupere des données de la collection dmachine et on les stocks dans une liste deroulante 
+
+var machines = "";
+    <% for (var i=0; i < machines.length; i++){ %>        
+
+        machines += "<option value='<%= machines[i].nom%>'><%= machines[i].nom%></option>";       // on incremente machines 
+    <% } %>
+
+$(function(){
+
+   $("#selectmachine").html(machines);                // on renvoie les données dans la page voulue 
+        
+});
+
+// rajouter le lien script src de ce code dans la page voulue 
+
+  <script src="/machines/getmachines"> </script>
+  
+ // dans la page voulue
+
+<form action="/droits/save" method="POST">
+
+            <select id="selectmachine" name="id_machine"></select>      // ne pas oublier de mettre un attribut "name" pour  
+            <input type="submit" value="enregistrer" id="envoyer">      // renvoyer la valeur selectionné
+        </form>
