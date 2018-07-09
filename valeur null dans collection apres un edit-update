@@ -1,0 +1,17 @@
+Verifier si dans le formulaire d'edition que les "name=" portent bien le meme nom que dans le controller "req.body"
+
+Exemple ------------------------
+
+atelier formulaire "edit":
+
+titre atelier:
+    ....
+    <input type="text" name="titre" value="<%= atelier.titre %>" placeholder="titre" />   --------- name="titre"
+    ....
+    
+AtelierController :
+  atelierController.update = function(req, res){
+    Atelier.findByIdAndUpdate(req.params.id,{ $set :{titre: req.body.titre } },{new: true}, function (err, atelier){ .....
+    .......
+
+----- titre: req.body.titre
